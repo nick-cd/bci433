@@ -1,0 +1,11 @@
+/*******************************************/
+/* TESTPRG.clle - SECOND CL PROGRAM        */
+/* Instructions were at the top of page 16 */
+/* Name: Nicholas Defranco                 */
+/*******************************************/
+
+PGM
+WRKOBJPDM DM433D09 /* Part 1 - View objects in my library WRKOBJPDM */
+DSPMSG /* Part 2 - "Display messages" Show messages from system related activities */
+WRKSPLF /* Part 3 - "Work Spooled Files" Look at spooled files */
+ENDPGM 

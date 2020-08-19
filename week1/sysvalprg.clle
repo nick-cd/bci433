@@ -1,0 +1,13 @@
+/*************************************************/
+/* SYSVALPRG.clle - display systems value        */
+/*                                               */
+/* Coded by: Nicholas Defranco                   */
+/*************************************************/
+PGM
+DSPLIBL /* shows the library list */
+EDTLIBL /* lets you edit your library list */
+DSPLIBL /* shows the library list */
+DSPSYSVAL QSYSLIBL
+DSPSYSVAL QUSRLIBL
+DSPSYSVAL QMODEL
+ENDPGM 
