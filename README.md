@@ -2,7 +2,8 @@
 _This repository is meant to assist people currently taking the BCI433 course_
 
 ## Contents
-* Downloading and Installing (see below)...
+* Downloading and Installing (see below)...  
+  The original instructions we recieved in class are in the current directory (acs\_setup.pdf & rdi\_setup.pdf)
   * [IBM i Access Client Solutions (ACS)](#acs)
   * [IBM Rational Developer for i (RDi)](#rdi)
 * Weekly Content
