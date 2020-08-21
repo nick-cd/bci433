@@ -22,46 +22,20 @@ _It's designed to be straight to the point_
 
 ##### <a name="acs"></a>ACS Download and Installation
 1. Download "IBM i Access Client Solutions (5733XJ1) X86 X64" ISO image file from [ITS Downloads Page][downloads]
-2. Either extract contents of archive (Which should be easy) **OR** [mount ISO file]((#mount)) possibly a little confusing
-3. [Navigate to *_Application and run](#install) the installer
-   
-    <a name="mount"></a>**Mounting...**
-    
-    *Linux (Mounting as a Loop device):*
-    ```
-    $ sudo mount -o loop /path/to/IBM\ ACS.ISO /mnt  
-    $ cd /mnt  
-    $ sudo ./install_acs_*32|64*
-    ```
-    
-    *Windows:* 
-    
-    >1. right-click and select mount (will appear as a DVD Drive)  
-    >2. navigate to the **Windows_Application** directory  
-    >3. select (double click) install_acs_*32/64*.js  
-    
-    
-    *~~Not sure how to do this on MacOS:~~*
-    
-    - [ ] MacOS instructions for mounting 
-   
-   
-   
-   <a name = install></a>**Installing**
-   
-   In the extracted directory, navigate to the *_Application directory based on your OS.
+2. Extract contents of the ISO archive
+3. In the extracted directory, navigate to the *_Application directory based on your OS.
    select the appropriate install_acs_* installer
    
    Linux:
    ```
-   cd /path/to/extracted_dir/Linux_Application
-   sudo ./install_acs_*
+   $ cd /path/to/extracted_dir/Linux_Application
+   $ sudo ./install_acs_*
    ```
    
    MacOS:
    ```
-   cd /path/to/extracted_dir/Mac_Application
-   sudo ./install_acs_*
+   $ cd /path/to/extracted_dir/Mac_Application
+   $ sudo ./install_acs_*
    ```
    
    Windows
