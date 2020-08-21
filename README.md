@@ -6,6 +6,7 @@ _This repository is meant to assist people currently taking the BCI433 course_
   The original instructions we recieved in class are in the current directory (acs\_setup.pdf & rdi\_setup.pdf)
   * [IBM i Access Client Solutions (ACS)](#acs)
   * [IBM Rational Developer for i (RDi)](#rdi)
+  * [RDi's Software license](#rdi_license)
 * Weekly Content
   * Lecture notes  
   These notes will summarize important topics mentioned in a lecture.
@@ -61,18 +62,18 @@ _It's designed to be straight to the point_
 
    Linux:
    ```
-   cd disk1/InstallerImage_linux_gtk_*
-   sudo ./install
+   $ cd disk1/InstallerImage_linux_gtk_*
+   $ sudo ./install
    ```
 
    MacOS:
    ```
-   cd disk1/InstallerImage_macosx_cocoa_*
-   sudo ./install
+   $ cd disk1/InstallerImage_macosx_cocoa_*
+   $ sudo ./install
    ```
 
    Windows:
-   > Navigate to disk1/InstallerImage_win32_win32_*
+   > Navigate to disk1/InstallerImage_win32_win32_*  
    > select install.exe
    
    ** The IBM installer manager should appear on the screen now **
@@ -82,8 +83,24 @@ _It's designed to be straight to the point_
  7. select **I accept** to the licence agreement and select next
  8. select next **4 times**
  9. select install
- 10. select next
+ 10. select finish
  
- RDi should now be installed!
+ RDi should now be installed!  
+ 
+ Upon startup, a pop up should appear telling you need to add a software licence
+ 
+ ##### <a name="rdi_license"></a>RDi Software License
+ 1. select manage licenses
+ 2. select Apply License
+ 3. in the Installed packages pane, click on IBM® Rational® Developer for i 9.6.0.0
+ 4. select the radio button, import product activation kit 
+ 5. select next
+ 6. click browse 
+ 7. navigate to the extracted "RDI_RPG_COBOL_TOOLS_V9.6_AK_EMG" directory and select com.ibm.rational.developer.ibmi.rpgcobol.v96.pek.jar
+ 8. select next
+ 9. select the **I accept** radio button and select next
+ 10. select finish  
+
+ Successfully imported software license!
 
 [downloads]: https://sonic.senecacollege.ca/download/download.php?area=iSeries
