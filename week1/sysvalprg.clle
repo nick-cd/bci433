@@ -3,11 +3,11 @@
 /*                                               */
 /* Coded by: Nicholas Defranco                   */
 /*************************************************/
-PGM
+PGM /* keyword to start a CLLE program (will recieve a warning if omitted) */
 DSPLIBL /* shows the library list */
 EDTLIBL /* lets you edit your library list */
 DSPLIBL /* shows the library list */
-DSPSYSVAL QSYSLIBL
-DSPSYSVAL QUSRLIBL
-DSPSYSVAL QMODEL
-ENDPGM 
+DSPSYSVAL QSYSLIBL /* shows system value for the default system libraries to be placed in a user's library list */
+DSPSYSVAL QUSRLIBL /* shows system value for the default user libraries to be placed in a user's library list */
+DSPSYSVAL QMODEL /* shows the system model number */
+ENDPGM /* keyword to end a CLLE program */
