@@ -1,0 +1,48 @@
+     A          R GETINCOME
+     A                                  1  3USER
+     A                                  1 71DATE
+     A                                      EDTCDE(Y)
+     A                                  3 28'I N C O M E   T A X E S'
+     A            INCOMEAMT      8Y 0B  5 23
+     A                                      EDTCDE(2)
+     A  60                                  DSPATR(PR)
+     A  98                                  DSPATR(PC)
+     A                                  5 13'Income:'
+     A  98                              5 36'Zero Income Amount'
+     A            MARRIED        1   B  6 23VALUES('Y' 'N')
+     A  60                                  DSPATR(PR)
+     A  97                                  DSPATR(PC)
+     A                                  6 13'Married?'
+     A                                  6 27'Y/N'
+     A  97                              6 35'Blank Marital Status'
+     A                                 10  5'Student Expense:'
+     A                                 10 44'Charitable Donations:'
+     A                                  8 21'A L L O W A B L E    D E D U C T I-
+     A                                       O N S'
+     A            STUEXPENSE     7Y 0B 10 23EDTCDE(2)
+     A  60                                  DSPATR(PR)
+     A            DONATIONS      7Y 0B 10 68EDTCDE(2)
+     A  60                                  DSPATR(PR)
+     A          R YOURTAX                   CF03(03 'Exit Program')
+     A                                      OVERLAY
+     A            DEDUCTIONS     6Y 0O 13 26EDTCDE(1)
+     A                                 13  5'Deductions Allowed:'
+     A            AINCOMEAMT     7Y 0O 15 30EDTCDE(1)
+     A                                 15  5'Adjusted Income Amount:'
+     A            TAXRATE        2Y 2O 17 16EDTCDE(A)
+     A                                 17  5'Tax Rate:'
+     A            TAXAMT         6Y 0O 19 19EDTCDE(1)
+     A                                 19  5'Taxes Owing:'
+     A            DAYSTOPAY      3Y 0O 21 31EDTCDE(2)
+     A                                 21  5'Your Taxes Are'
+     A                                 21 35'Days'
+     A                                 24 59'Nicholas Defranco'
+     A                                 24  4'F3 - Exit'
+     A  95                             21 20'Overdue by'
+     A  96                             21 20'Due in'
+
+     A*%%RS+<record-sequences>
+     A*%%RS+ <sequence name="Untitled">
+     A*%%RS+  <device type="display" width="80" height="24" />
+     A*%%RS+ </sequence>
+     A*%%RS </record-sequences> 
