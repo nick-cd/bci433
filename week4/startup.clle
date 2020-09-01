@@ -1,0 +1,10 @@
+             PGM
+             CALL       PGM(QGPL/STRJOB) /* print name and user ID at the bottom of every page in a spooled file */
+             ADDLIBLE   BCI433LIB /* Add BCI433LIB to the library list */
+             MONMSG     MSGID(CPF2103) /* Since ADDLIBLE command can fail (library is already added) we put a MONMSG statement */
+				       /* On the next line. It will catch and suppress a specific message returned by ADDLIBLE */
+				       /* denoted by the message ID (MSGID) passed as an argument to it. If this statement was */
+				       /* omitted and ADDLIBLE returned that message, the program would crash with a black */
+				       /* screen of death! */
+             DSPSYSLVL  OUTPUT(*DISPLAY) /* Display the system level to the screen */
+             ENDPGM
