@@ -1,0 +1,59 @@
+     A          R TITLE
+     A                                  1 31'Weekly Payroll Report'
+     A                                  1 69'Page:'
+     A                                  1 75PAGNBR
+     A                                  1  1DATE(*YY)
+     A                                      EDTCDE(Y)
+     A                                  1 12TIME
+     A                                  2  1'Nicholas Defranco'
+     A            SHIFTTYPE     30      2 27
+     A          R COLHDG                    SPACEB(2)
+     A                                     2'Employee'
+     A                                    15'Work'
+     A                                    23'Pay'
+     A                                    29'Hourly'
+     A                                    37'Hours'
+     A                                    47'Regular'
+     A                                    62'Overtime'
+     A                                    80'Total'
+     A                                     3'Number'
+     A                                      SPACEB(1)
+     A                                    15'Shift'
+     A                                    22'Grade'
+     A                                    30'Rate'
+     A                                    37'Worked'
+     A                                    49'Pay'
+     A                                    65'Pay'
+     A                                    81'Pay'
+     A          R EMPDETAIL
+     A            EMPNUM    R              1
+     A                                      REFFLD(SHIFTWEEK/EMPNUM SENECAPAY/S-
+     A                                      HIFTWEEK)
+     A                                      EDTWRD('0   -   -   -')
+     A                                      SPACEB(1)
+     A            WORKSHIFT R             17REFFLD(SHIFTWEEK/WORKSHIFT +
+     A                                      SENECAPAY/SHIFTWEEK)
+     A            PAYGRADE  R             24REFFLD(SHIFTWEEK/PAYGRADE +
+     A                                      SENECAPAY/SHIFTWEEK)
+     A            HOURLYRATE     5  2     29EDTCDE(2)
+     A            HRSWORKED R             39REFFLD(SHIFTWEEK/HRSWORKED +
+     A                                      SENECAPAY/SHIFTWEEK)
+     A                                      EDTCDE(2)
+     A            REGULARPAY     7  2     46EDTCDE(2)
+     A            OVERPAY        7  2     62EDTCDE(2)
+     A            WEEKLYPAY      7  2     78EDTCDE(2)
+     A          R TOTALS                    SPACEB(2)
+     A                                    32'Totals:'
+     A            TOTREGPAY      9  2     43EDTCDE(1 $)
+     A            TOTOVTPAY      9  2     60EDTCDE(1 $)
+     A            TOTWKPAY       9  2     77EDTCDE(1 $)
+
+     A*%%RS+<record-sequences>
+     A*%%RS+ <sequence name="Report1">
+     A*%%RS+  <device type="printer" width="132" height="66" />
+     A*%%RS+  <record-write record-format="TITLE" />
+     A*%%RS+  <record-write record-format="COLHDG" />
+     A*%%RS+  <record-write record-format="EMPDETAIL" />
+     A*%%RS+  <record-write record-format="TOTALS" />
+     A*%%RS+ </sequence>
+     A*%%RS </record-sequences> 

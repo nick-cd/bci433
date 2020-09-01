@@ -1,0 +1,112 @@
+             PGM                                                                                    
+                                                                                                    
+             /*  Variable definitions */                                                            
+             DCL        &SHIFT *CHAR 1                                                              
+             DCL        &SHIFTTYPE *CHAR 30                                                         
+             DCL        &OUTQ *CHAR 10                                                              
+             DCL        &OUTQLIB *CHAR 10                                                           
+                                                                                                    
+             /* Get user profile's output queue and output queue library */                         
+             /* This retrieved information will be stored in the variables */                       
+             RTVUSRPRF  OUTQ(&OUTQ) OUTQLIB(&OUTQLIB)                                               
+                                                                                                    
+             /* Remove logged on users spooled files in their output queue */                       
+             CLROUTQ    &OUTQLIB/&OUTQ                                                              
+                                                                                                    
+             /* Add SENECAPAY library, could cause the CPF2103 to occur */                          
+             ADDLIBLE   SENECAPAY                                                                   
+             MONMSG     MSGID(CPF2103)                                                              
+                                                                                                    
+             /* Entering a 5 will stop the program */                                               
+             DOWHILE    (&SHIFT *NE '5')                                                            
+                                                                                                    
+                /* Prompt user */                                                                   
+                /* user input is stored in SHIFT variable */                                        
+                SNDUSRMSG  MSG('1 - Day Shift, 2 - Afternoon Shift, 3 - Night Shift, 4 - All +      
+                             Shifts 5 - EXIT') MSGRPY(&SHIFT)                                       
+                                                                                                    
+                SELECT                                                                              
+                   WHEN       (&SHIFT = '1') DO                                                     
+                      /* Change Variable - variable name - new value */                             
+                      CHGVAR     &SHIFTTYPE 'DAY SHIFT'                                             
+                      /* Override database file - file to override - overriding file */             
+                                                                                                    
+                      /* This will use the logical file days instead of SHIFTWEEK */                
+                      /* whenever SHIFTWEEK is referenced in the rpgle program */                   
+                      /* This will use the logical file whenever SHIFTWEEK is in the */             
+                      /* RPGLE program days instead of SHIFTWEEK */                                 
+                      OVRDBF     SHIFTWEEK DAYS                                                     
+                      /* Override printer file - printer file name - name of spool file to use */   
+                      /* This command can change any attribute about the spool file */              
+                      /* we just only happen to change the name */                                  
+                      OVRPRTF    FILE(PAYRPT) SPLFNAME(DAYSHIFT)                                   
+                      
+
+                      /*********************/                                                        
+                      /* In LAB 6A you do: */
+                      /* Calls bound program passing value of SHIFTTYPE variable to it */
+                      /* CALL PAYPGM PARM(&SHIFTTYPE) */
+
+                      /* In LAB 6B you do: */
+                      /* Calls a static procedure (or module) passing value of SHIFTTYPE variable to it */             
+                      CALLPRC    PAYPGM PARM(&SHIFTTYPE)    
+                       
+                      /* repeat for the other WHEN branchs */
+                      /*********************/                                       
+                                                                                                    
+                      /* Display spool file - file to display - spool file number */                
+                      /* *LAST will give the most recent spool file created under */                
+                      /* the name DAYSHIFT (in this case) */                                        
+                      DSPSPLF    FILE(DAYSHIFT) SPLNBR(*LAST)                                       
+                   ENDDO                                                                            
+                   WHEN       (&SHIFT = '2') DO                                                     
+                      CHGVAR     &SHIFTTYPE 'AFTERNOON SHIFT'                                       
+                      OVRDBF     SHIFTWEEK AFTERNOONS                                               
+                      OVRPRTF    FILE(PAYRPT) SPLFNAME(AFTRNSHIFT)                                 
+                      CALLPRC    PAYPGM PARM(&SHIFTTYPE) /* Change for lab 6A */                                      
+                      DSPSPLF    FILE(AFTRNSHIFT) SPLNBR(*LAST)                                     
+                   ENDDO                                                                            
+                   WHEN       (&SHIFT = '3') DO                                                     
+                      CHGVAR     &SHIFTTYPE 'NIGHT SHIFT'                                           
+                      OVRDBF     SHIFTWEEK NIGHTS                                                   
+                      OVRPRTF    FILE(PAYRPT) SPLFNAME(NIGHTSHIFT)                                 
+                      CALLPRC    PAYPGM PARM(&SHIFTTYPE) /* Change for lab 6A */                                   
+                      DSPSPLF    FILE(NIGHTSHIFT) SPLNBR(*LAST)                                     
+                   ENDDO                                                                            
+                   WHEN       (&SHIFT = '4') DO                                                     
+                      CHGVAR     &SHIFTTYPE 'ALL SHIFT'                                             
+                                                                                                    
+                      /* Originally had this code ... */                                            
+                      /* Doesn't work as it doesn't order the employees */                          
+                                                                                                    
+                      /* delete override - overidden file */                                        
+                      /* DLTOVR     SHIFTWEEK */                                                    
+                      /* MONMSG     MSGID(CPF9841) */ /* Monitors the case if DLTOVR throws the */  
+                               /* message specifing that SHIFTWEEK is not being overriden */        
+                                                                                                    
+                      /* SHIFTS is another logical file it contains the same data */                
+                      /* as the original SHIFTWEEK data file does but it is sorted */               
+                      /* by the employee number (Which was a requirement). */                       
+                      OVRDBF     SHIFTWEEK SHIFTS                                                   
+                                                                                                    
+                      OVRPRTF    FILE(PAYRPT) SPLFNAME(SHIFTWEEKS)                                 
+                      CALLPRC    PAYPGM PARM(&SHIFTTYPE) /* Change for lab 6A */                                          
+                      DSPSPLF    FILE(SHIFTWEEKS) SPLNBR(*LAST)                                     
+                   ENDDO                                                                            
+                   WHEN       (&SHIFT *NE '5') DO                                                   
+                      /* *CAT concatenates strings */                                               
+                      SNDUSRMSG  MSG(&SHIFT *CAT ' is an invalid selection. Press the enter +       
+                                   key.')                                                           
+                   ENDDO                                                                            
+                ENDSELECT                                                                           
+             ENDDO                                                                                  
+                                                                                                    
+             /* Work output queue */                                                                
+             /* This will allow the user to interact with their output queue */                     
+             WRKOUTQ    &OUTQLIB/&OUTQ                                                              
+             
+             /* Display status message on the message line when the CLLE program finishes */
+             SNDPGMMSG MSG('Okay to clear out an output queue in +                                  
+                            school - Never at work in production')                                  
+                                                                                                    
+             ENDPGM                                                                                  

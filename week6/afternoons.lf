@@ -1,0 +1,3 @@
+     A          R SHIFTWEEK                 PFILE(SENECAPAY/SHIFTWEEK)
+     A          K EMPNUM
+     A          S WORKSHIFT                 COMP(EQ '2') 

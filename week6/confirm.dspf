@@ -1,0 +1,32 @@
+     A          R INFO
+     A                                  1  3USER
+     A                                  2  3'Nicholas Defranco'
+     A                                  1 20'S E N E C A   Payroll   Program Co-
+     A                                      mpleted'
+     A                                  2 71TIME
+     A                                  1 71DATE
+     A                                      EDTCDE(Y)
+     A                                  4 16'Rates:'
+     A                                  9 16'Totals:'
+     A                                  5 25'Day Rate:'
+     A                                  6 25'Afternoon Rate:'
+     A                                  7 25'Night Rate:'
+     A                                 11 23'Regular Pay:'
+     A                                 12 23'Overtime Pay:'
+     A                                 13 23'Company Payout:'
+     A            DAYRATE   R        O  5 42REFFLD(SHIFTRATER/DAYRATE +
+     A                                      SENECAPAY/SHIFTRATES)
+     A                                      EDTCDE(1 $)
+     A            NIGHTRATE R        O  7 42REFFLD(SHIFTRATER/NIGHTRATE +
+     A                                      SENECAPAY/SHIFTRATES)
+     A                                      EDTCDE(1 $)
+     A            AFTNRATE  R        O  6 42REFFLD(SHIFTRATER/AFTNRATE +
+     A                                      SENECAPAY/SHIFTRATES)
+     A                                      EDTCDE(1 $)
+     A            TOTREGPAY      9  2O 11 40EDTCDE(1 $)
+     A            TOTOVTPAY      9Y 2O 12 40EDTCDE(1 $)
+     A            TOTWKPAY       9Y 2O 13 40EDTCDE(1 $)
+     A            SHIFTTYPE     30   O  9 26
+ 
+
+Note: SHIFTTYPE is part of LAB 6
