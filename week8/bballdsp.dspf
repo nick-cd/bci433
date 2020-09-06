@@ -1,0 +1,41 @@
+     A          R SFL1                      SFL
+     A            HEIGHT    R        O  9 56REFFLD(AMERICANLG/HEIGHT +
+     A                                      BASEBALL20/AMERICANLG)
+     A            WEIGHT    R        O  9 65REFFLD(AMERICANLG/WEIGHT +
+     A                                      BASEBALL20/AMERICANLG)
+     A            BIRTHDATE R        O  9 43REFFLD(AMERICANLG/BIRTHDATE +
+     A                                      BASEBALL20/AMERICANLG)
+     A            HITSTHROWSR        O  9 36REFFLD(AMERICANLG/HITSTHROWS +
+     A                                      BASEBALL20/AMERICANLG)
+     A            FULLNAME      21   O  9  2
+     A            POSNAME        9   O  9 25
+     A          R CTL1                      SFLCTL(SFL1)
+     A  98                                  SFLDSPCTL
+     A  98                                  SFLDSP
+     A  98                                  SFLEND(*MORE)
+     A                                      SFLPAG(14)
+     A                                      SFLSIZ(100)
+     A N98                                  SFLCLR
+     A                                  1 26'T o r o n t o   B l u e   J a y s'
+     A                                  1 70DATE
+     A                                      EDTCDE(Y)
+     A                                  5  1'Pitchers:'
+     A                                  5 16'Catchers:'
+     A                                  5 32'Infield:'
+     A                                  5 47'Outfield:'
+     A                                  5 63'Other: '
+     A            CATCHERS       2  0O  5 26EDTCDE(1)
+     A            PITCHERS       2  0   5 11EDTCDE(1)
+     A            INFIELD        2  0   5 41EDTCDE(1)
+     A            OUTFIELD       2  0   5 58EDTCDE(1)
+     A            OTHERS         2  0   5 71EDTCDE(1)
+     A                                  7  9'Name'
+     A                                  7 25'Position'
+     A                                  7 35'Hits/'
+     A                                  8 35'Throws'
+     A                                  7 44'BirthDate'
+     A                                  7 56'Height'
+     A                                  7 63' Weight'
+     A                                  3  3'View:'
+     A                                  1  2'Nicholas Defranco'
+ 

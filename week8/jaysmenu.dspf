@@ -1,0 +1,18 @@
+     A          R MENU                      CF03(03 'EXIT')
+     A                                  2 27'Toronto Blue Jays 2020'
+     A                                  2 67DATE
+     A                                      EDTCDE(Y)
+     A                                  3  2'Nicholas Defranco'
+     A                                  6 24'1. Entire Team Roster'
+     A                                  7 24'2. Pitchers'
+     A                                  8 24'3. Infield and Outfield'
+     A                                 12 20'Selection:'
+     A                                 21  9'F3 - Exit'
+     A            SELECTION      1S 0B 12 32
+     A  99                                  DSPATR(RI)
+     A  99                                  ERRMSG('Value entered for field is +
+     A                                              not valid.  Valid values +
+     A                                              listed in messages help.')
+     A
+     A                                  2  1USER
+ 
