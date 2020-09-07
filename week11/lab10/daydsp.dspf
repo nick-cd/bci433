@@ -1,0 +1,29 @@
+     A*%%TS  SD  20200726  182818  DM434A40    REL-V7R4M0  5770-WDS
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      INDARA
+     A                                      CF03(03)
+     A          R INPUT
+     A*%%TS  SD  20200726  182818  DM434A40    REL-V7R4M0  5770-WDS
+     A                                  8 12'Enter Day Number: '
+     A            DAYIN          1Y 0B  8 31
+     A  99                                  DSPATR(PR)
+     A                                      EDTCDE(4)
+     A                                  1  2USER
+     A                                  3  2'Nicholas Defranco'
+     A                                  1 21'U S E R   D E F I N E D   F U N C -
+     A                                      T I O N'
+     A                                  1 69DATE
+     A                                      EDTCDE(Y)
+     A            SOLUTION      15   O  8 40
+     A          R OUTPUT
+     A*%%TS  SD  20200404  133611  DJ433A40    REL-V7R4M0  5770-WDS
+     A                                      OVERLAY
+     A                                 14 11'Day Name: '
+     A            DAYNAME        9A  O 14 24
+     A                                 22  7'F3 - Exit'
+     A*%%RS+<record-sequences>
+     A*%%RS+ <sequence name="Untitled">
+     A*%%RS+  <device type="display" width="80" height="24" />
+     A*%%RS+ </sequence>
+     A*%%RS </record-sequences> 
