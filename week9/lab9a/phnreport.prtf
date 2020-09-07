@@ -1,0 +1,61 @@
+     A          R NEWPAGE
+     A                                  2  6'User:'
+     A                                  1  1'Timestamp:'
+     A                                  3  3'Server:'
+     A                                  1105'Page:'
+     A                                  1112PAGNBR
+     A            TIMESTAMP       Z     1 12
+     A            USER          10      2 12
+     A            SERVER        10      3 12
+     A                                  2 48'P H O N E   L O G   R E P O R T'
+     A                                  5  3'Sales'
+     A                                  6  4'ID'
+     A                                  5 11'Customer'
+     A                                  5 27'Customer Name'
+     A                                  6 11'Number'
+     A                                  6 78'Called'
+     A                                  5 59'Telephone'
+     A                                  5 77'Last Date'
+     A                                  5 90'Oldest Call'
+     A                                  6 94'Date'
+     A                                  5103'Next Call'
+     A                                  6105'Date'
+     A                                  7131'*'
+     A          R RPTLINE                   SPACEB(1)
+     A            CSTSLN    R              3REFFLD(CONTACTS20/CSTSLN +
+     A                                      BCI433LIB/CONTACTS20)
+     A            CSTNUM    R             11
+     A                                      REFFLD(CUSTOMER20/CSTNUM +
+     A                                      BCI433LIB/CUSTOMER20)
+     A            CSTNAM    R             22REFFLD(CUSTOMER20/CSTNAM +
+     A                                      BCI433LIB/CUSTOMER20)
+     A            CSTPHN    R             57REFFLD(CONTACTS20/CSTPHN +
+     A                                      BCI433LIB/CONTACTS20)
+     A            PHNLDC    R             77REFFLD(CONTACTS20/PHNLDC +
+     A                                      BCI433LIB/CONTACTS20)
+     A            HIGHLIGHT      8        91
+     A            NEXTCDATE       L      103
+     A          R SUMMARY                   SPACEB(3)
+     A                                    12'S U M M A R Y   I N F O R M A T I -
+     A                                      O N'
+     A                                     2'CONTACTS20 Total Records:'
+     A                                      SPACEB(2)
+     A            CONTACTT       5  0     27EDTCDE(1)
+     A                                    44'Oldest Last Callback Date:'
+     A            OLDESTDATE      L       71
+     A                                     2'CUSTOMER20 Total Records:'
+     A                                      SPACEB(1)
+     A            CUSTOMERT      5  0     27EDTCDE(1)
+     A                                    39'Most Recent Last Callback Date:'
+     A            MOSTRECENT      L       71
+     A                                     2'Total Records with an Unknown Last-
+     A                                       Callback Date:'
+     A                                      SPACEB(2)
+     A            UNKNOWNT       5  0     52EDTCDE(1)
+
+     A*%%RS+<record-sequences>
+     A*%%RS+ <sequence name="Untitled">
+     A*%%RS+  <device type="printer" width="132" height="66" />
+     A*%%RS+  <record-write record-format="SUMMARY" />
+     A*%%RS+ </sequence>
+     A*%%RS </record-sequences> 
