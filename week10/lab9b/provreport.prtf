@@ -1,0 +1,55 @@
+     A          R REPORTHDG
+     A                                  2 39'C u s t o m e r s  >'
+     A            LOWLIMIT       7  2   2 60EDTCDE(1 $)
+     A          R RCOLUMNS                  SPACEB(2)
+     A                                     4'Province'
+     A                                    19'Customer ID'
+     A                                    36' Full Name'
+     A                                    62'City'
+     A                                    83'Purchase'
+     A                                   100'Purchase'
+     A                                    84'Amount'
+     A                                      SPACEB(1)
+     A                                   102'Date'
+     A          R NEWPROV                   SPACEB(1)
+     A            PROVINCE      10         3
+     A          R DETAIL
+     A            CUSTID    R             20
+     A                                      REFFLD(ONTARIO/CUSTID BCI433LIB/ONT-
+     A                                      ARIO)
+     A                                      SPACEB(1)
+     A            FULLNAME      31        28
+     A            CITY      R             60REFFLD(ONTARIO/CITY BCI433LIB/ONTAR-
+     A                                      IO)
+     A            PURCHASE  R             83REFFLD(ONTARIO/PURCHASE BCI433LIB/O-
+     A                                      NTARIO)
+     A                                      EDTCDE(1)
+     A            PDATE     R             99
+     A                                      REFFLD(ONTARIO/PDATE BCI433LIB/ONTA-
+     A                                      RIO)
+     A          R UNDERLIMIT                SPACEB(2)
+     A                                    46'C u s t o m e r s   <='
+     A            LOWLIMIT       7  2     70EDTCDE(1 $)
+     A                                     6'Ontario'
+     A                                      SPACEB(2)
+     A                                    23'Quebec'
+     A                                    39'Manitoba'
+     A            ONTTOTAL       3  0      8SPACEB(2)
+     A                                      EDTCDE(1)
+     A            QUETOTAL       3  0     24EDTCDE(1)
+     A            MANTOTAL       3  0     40EDTCDE(1)
+     A          R TOTALS                    SPACEB(2)
+     A                                    67'Total Amount:'
+     A            TOTALPURCH     8  2     82EDTCDE(1 $)
+
+     A*%%RS+<record-sequences>
+     A*%%RS+ <sequence name="Untitled">
+     A*%%RS+  <device type="printer" width="132" height="66" />
+     A*%%RS+  <record-write record-format="TITLE" />
+     A*%%RS+  <record-write record-format="HEADINGS" />
+     A*%%RS+  <record-write record-format="NEWPROV" />
+     A*%%RS+  <record-write record-format="DETAIL" />
+     A*%%RS+  <record-write record-format="TOTALS" />
+     A*%%RS+  <record-write record-format="UNDERLIMIT" />
+     A*%%RS+ </sequence>
+     A*%%RS </record-sequences> 
