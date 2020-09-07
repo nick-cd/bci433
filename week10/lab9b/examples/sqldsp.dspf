@@ -1,0 +1,37 @@
+     A*%%TS  SD  20200330  125221  DJ433A40    REL-V7R4M0  5770-WDS
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A          R RECORD1
+     A                                  2 27'SQL Demonstration'
+     A                                  5 14'Enter Customer ID:'
+     A            CUSTIDIN       5   B  5 33
+     A          R RECORD2
+     A*%%TS  SD  20200330  125221  DJ433A40    REL-V7R4M0  5770-WDS
+     A                                      CF03(03)
+     A                                      OVERLAY
+     A            CUSTID    R        O 10  8REFFLD(CUSTOMER/CUSTID BCI433LIB/CU-
+     A                                      STOMER)
+     A            NAME      R        O 10 18REFFLD(CUSTOMER/NAME BCI433LIB/CUST-
+     A                                      OMER)
+     A            SHIPCITY  R        O 10 37REFFLD(CUSTOMER/SHIPCITY BCI433LIB/-
+     A                                      CUSTOMER)
+     A N99        DISCOUNT  R        O 10 57REFFLD(CUSTOMER/DISCOUNT BCI433LIB/-
+     A                                      CUSTOMER)
+     A                                      EDTCDE(1)
+     A                                  8  7'Cust ID'
+     A                                  7 19'Customer'
+     A                                  7 56'Discount'
+     A                                  8 37'City'
+     A                                  8 57'Rate'
+     A                                  8 20'Name'
+     A  99                             10 63'Unknown Rate'
+     A  99                                  DSPATR(RI)
+     A          R RECORD3
+     A                                      OVERLAY
+     A                                 12 24'No Row Matches That Customer ID'
+     A                                      DSPATR(RI)
+     A          R RECORD4
+     A                                      OVERLAY
+     A                                 12 24'Unexpeced Error Occurred'
+     A                                      DSPATR(RI)
+ 
