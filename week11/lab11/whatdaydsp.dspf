@@ -1,0 +1,17 @@
+     A          R OUTPUT                    CF03(03)
+     A                                      OVERLAY
+     A            RESULT1       30   O 11 19
+     A            RESULT2       30   O 12 19
+     A                                 16 15'F3 - Exit'
+     A          R INPUT
+     A            DATEIN          L  B  4 37
+     A  90                                  DSPATR(PR)
+     A                                  4 22'Enter a Date:'
+     A                                  4 50'yyyy-mm-dd'
+     A                                  1 21'D a y   O f   W e e k   F u n c t -
+     A                                      i o n'
+     A                                  1  4USER
+     A                                  1 72DATE
+     A                                      EDTCDE(Y)
+     A                                  2  4'Nicholas Defranco'
+ 
