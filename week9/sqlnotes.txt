@@ -1,0 +1,34 @@
+     SQL COMMUNICATIONS AREA
+
+         SQLCODE
+          < 0 = ERROR
+            0 = SUCCESSFUL EXECUTION (MAY HAVE A WARNING)
+          > 0 = SUCCESSFUL EXECUTION WITH A WARNING
+          = 100 row not found
+   SQLWRN
+            SQLWN0   set to "W" if any other SQLWN1- SQLWNA set to "W"
+            SQLWN1   Character String value was truncated on retrieval
+            SQLWN2   Some of the values passed to a column function were null
+            SQLWN3   Number of values retrieved from database exceeds number of host variables
+            SQLWN4   Update or Delete does not use a Where clause and will affect all rows of table
+            ..
+            SQLWN6   The result of a date calculation adjusted to avoid impossible date. Feb 31
+            ..
+            SQLWNA
+
+               SQLSTATE
+
+                   00000   - SUCCESSFUL EXECTUTION OF SQL STATEMENT
+                   02000   - NOT FOUND
+                   01???   - WARNING
+
+                       SELECT;
+                         WHEN SQLState = '00000';
+                           SQLSUCCESS = *ON;
+                         WHEN SQLState = '02000';
+                           NOTFOUND = *ON;
+                         WHEN %Subst(SQLState : 1 : 2 ) = '01';
+                           EXSR   SQLWARNING;
+                         OTHER;
+                           EXSR   SQLERROR;
+                       ENDSL; 
