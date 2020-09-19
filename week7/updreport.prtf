@@ -1,0 +1,45 @@
+     A          R HEADING
+     A                                  2 49'S A L E S S T A F F   U P D A T E'
+     A                                  2  2DATE
+     A                                      EDTCDE(Y)
+     A                                  2125PAGNBR
+     A                                  2117'Page:'
+     A                                  2 18'Your Name Here'
+     A                                  4  2'Code'
+     A                                  4  8'Dept'
+     A                                  4 15'Emp ID'
+     A                                  4 24'First Name'
+     A                                  4 46'Last Name'
+     A                                  4 69'City'
+     A                                  4 90'Address'
+     A                                  4115'Phone'
+     A                                  4125'Postal'
+     A                                  5125'Code'
+     A          R DETAIL                    SPACEB(1)
+     A            TCODE     R              3SPACEB(1)
+     A                                      REFFLD(SALESTRANS/TCODE BCI433LIB/S-
+     A                                      ALESTRANS)
+     A            TDEPT     R              8REFFLD(SALESTRANS/TDEPT BCI433LIB/S-
+     A                                      ALESTRANS)
+     A            TSALESID  R             15REFFLD(SALESTRANS/TSALESID +
+     A                                      BCI433LIB/SALESTRANS)
+     A            TFNAME    R             24REFFLD(SALESTRANS/TFNAME +
+     A                                      BCI433LIB/SALESTRANS)
+     A            TLNAME    R             46REFFLD(SALESTRANS/TLNAME +
+     A                                      BCI433LIB/SALESTRANS)
+     A            TCITY     R             69REFFLD(SALESTRANS/TCITY BCI433LIB/S-
+     A                                      ALESTRANS)
+     A            TADDRESS  R             90REFFLD(SALESTRANS/TADDRESS +
+     A                                      BCI433LIB/SALESTRANS)
+     A            TPHONE    R            113REFFLD(SALESTRANS/TPHONE +
+     A                                      BCI433LIB/SALESTRANS)
+     A            TPCODE    R            125REFFLD(SALESTRANS/TPCODE +
+     A                                      BCI433LIB/SALESTRANS)
+
+     A*%%RS+<record-sequences>
+     A*%%RS+ <sequence name="Untitled">
+     A*%%RS+  <device type="printer" width="132" height="66" />
+     A*%%RS+  <record-write record-format="HEADING" />
+     A*%%RS+  <record-write record-format="DETAIL" />
+     A*%%RS+ </sequence>
+     A*%%RS </record-sequences> 
