@@ -1,0 +1,14 @@
+name: check-grammer
+on:
+  push:
+    branch:
+      - master
+jobs:
+  write-good:
+    name: write-good
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - run: npm install -g write-good
+      - run: write-good $(git ls-files | grep '.*\.md')
