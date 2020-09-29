@@ -1,7 +1,7 @@
 name: check-grammer
 on:
   push:
-    branch:
+    branches:
       - master
 jobs:
   write-good:
@@ -12,3 +12,14 @@ jobs:
       - uses: actions/setup-node@v1
       - run: npm install -g write-good
       - run: write-good $(git ls-files | grep '.*\.md')
+  proselint:
+    name: proselint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v1
+      - uses: BSFishy/pip-action@v1
+        with:
+          packages: | 
+            proselint
+      - run: proselint $(git ls-files | grep '.*\.md')
