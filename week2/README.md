@@ -3,7 +3,7 @@
 ## Rational Developer for i
 
 Rational Developer for i (RDi) is the modern way to interact with an IBM i
-system. It is Eclipse based.
+system.
 
 Look at the lab to learn how to get set up.
 
@@ -22,30 +22,31 @@ like. This lab has you create a pf file.
 
 ### Adding Libraries
 
-Adding libraries is a very common operation. You will come across programs that
+Adding libraries is a common operation. You will come across programs that
 reference files in a library not in you library list.
 
-Right click on the library list in the remote systems view and select  
-_Add Library List Entry_. This entry is lost upon logging off. 
+Right click on the library list in the remote systems view and select  *Add
+Library List Entry*. This entry exists for the session. Since this is the
+case:
 
-Since library lists are lost upon logging off, **adding a library to one
-session, (say your RDi session) WILL NOT add that libraries in your other
-session(s) (say your ACS session that you may have open alongside RDi)**
+**adding a library to one session, (say your RDi session) WILL NOT add that
+libraries in your other session(s) (say your ACS session that you may have open
+alongside RDi)**
 
-**Note:** placing a library at the start of list
-When you tell RDi to place a new library entry at the start of the list, it will
-_place it after all system libraries specified by a priveledged user_.
+**Note:** placing a library at the start of list When you tell RDi to place a
+new library entry at the start of the list, it will _place it after all system
+libraries specified by a priveledged user_.
 
 #### Adding libraries upon logging in
 
-> Immediately below your connection is Objects. Right click on this word and
+> Below your connection is Objects. Right click on this word and
 > select Properties.
 
 Select Initial library list, input the library and click the _"Add"_ button
 
 You can also give it an initial command. Have this command:
 
-```
+```CLLE
 CALL STRJOB
 ```
 
@@ -53,27 +54,24 @@ as your initial command, so you no longer need to remember to call it yourself.
 
 ## Simple RPGLE program
 
-In this lab, you make a simple fixed-form RPGLE program just to show you how to
+In this lab, you make a simple fixed-form RPGLE program to show you how to
 fix the problem not having access to an external file (add the library that has
 the file, see above).
 
 To compile, you have right-clicked the member (in the remote systems view),
-hover over compile and selected:
-```CRTBNDRG```
-The newly created object will be of type: *pgm.rpgle
+hover over compile and selected: `CRTBNDRG` The newly created object will be of
+type: **pgm.rpgle*
 
-We don't use this form of RPGLE, we use free form (will be used from lab 3
-onward).
+We don't use this form of RPGLE, we use free form.
 
 Note that the new compiled object will not appear in the remote systems view
 upon compiling. To find it you need to refresh the remote systems view.
 
 ## Data Description Specification
 
-Data Description Specification (DDS), is used as a way to describe properties
-of records and fields (data) in various file types. In this lab we use DDS to
-create a physical file (or a database table). This can also be done with SQL
-(CREATE TABLE command)
+Data Description Specification (DDS), describes properties
+of records and fields (data) for files. In this lab we use DDS to
+create a physical file (or a database table). CREATE TABLE in SQL.
 
 Everything in DDS **is uppercase**
 
@@ -92,6 +90,7 @@ In the editor for a pf file, you can press F4 to have RDi prompt you for values.
 It's easier to use this than to type it yourself.
 
 There are two commands used to create a physical file (that is, compile it):
+
 * CRTPF and
 * CHGPF
 
@@ -105,27 +104,29 @@ compiling, you will get a *file.pf-dta object.
 
 ##### Errors when compiling
 
-When you get errors (or warnings...) you should see the list of them in the
+When you get errors (or warnings…) you should see the list of them in the
 bottom view. Clicking on one will highlight the line with the error message
-just above it. Pressing Ctrl + F5 will remove the error message from the editor.
+above it. Pressing Ctrl + F5 will remove the error message from the editor.
 
 #### Example of a physical file
 
 Here's an example of a record definition in a physical file:
-```
+
+```DDS
      A                                      UNIQUE
      A          R STUDENTSR                 TEXT('STUDENTS REGISTER')
-     // ...
+     // …
      A          K STUDENTNO
 ```
 
-* R STUDENTSR - record name name - _not really relevant now_
+* R STUDENTSR - record name - _not relevant now_
 * TEXT('STUDENTS REGISTER') - title
 * K STUDENTNO - student number field as the primary key
 * UNIQUE - enforces the primary key constraint
 
 Example of a field in the table:
-```
+
+```DDS
      A            FEESOWED       7P 2       COLHDG('FEES' 'OWED')
 ```
 
@@ -140,35 +141,34 @@ Take a look at ```students.pf``` for a complete example
 
 ### Data Types
 
-| type | description |
-| ---- | ----------- |
-| P | Packed Decimal (2 digits in one byte) |
-| S | Zoned Decimal (1 digit in one byte) |
-| A | Character |
-| L | Date |
-| T | Time |
-| Z | Time Stamp |
+|type|description                          |
+|----|-------------------------------------|
+|P   |Packed Decimal (2 digits in one byte)|
+|S   |Zoned Decimal (1 digit in one byte)  |
+|A   |Character                            |
+|L   |Date                                 |
+|T   |Time                                 |
+|Z   |Time Stamp                           |
 
 ### Adding data to a table
 
 In ACS, we can add data using DFU (Data File Utility) with the:```UPDDTA```
-command. There is some wierd stuff about this command that they mention in the
-lab:
+command. Here are some notes on this command:
 
-> Numeric fields should have valid numeric input.  The decimal point doesn’t
+> Numeric fields should have valid numeric input. The decimal point doesn’t
 > show, so when entering $94.99 you would enter 9499 and press the field exit
-> key.  If you enter 0 in a numeric field without pressing field exit you will
+> key. If you enter 0 in a numeric field without pressing field exit you will
 > probably get an entry error. The 0 needs to be right justified.
 
 ### Viewing data in a table
 
 After adding data issue:
 
-```
+```RPGLE
 RUNQRY *N Students
 ```
 
-To view the data. (equivalent to doing a SELECT * FROM ... in SQL).
+To view the data. (SELECT * FROM … in SQL).
 
-To view the data in RDi, right-click on the *FILE.pf-dta file and hover over _show
-in table_ option and select fields.
+To view the data in RDi, right-click on the *FILE.pf-dta file and hover over
+*show in table* option and select fields.

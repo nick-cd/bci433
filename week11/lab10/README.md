@@ -2,10 +2,10 @@
 
 Get the complete code from the source files themselves
 
-### DAYSRPG code
+## DAYSRPG code
 
-```
-        DCL-f DayDsp Workstn;       
+```RPGLE
+        DCL-f DayDsp Workstn;
 
         // the '/' must be in column 7
         // src-pf -> source physical file name
@@ -13,28 +13,28 @@ Get the complete code from the source files themselves
         // application specifically, this will be DAYPROTO.
        /COPY <src-pf>,<member>
 
-        EXFMT INPUT;                    
-        DOW NOT(*IN03);                 
+        EXFMT INPUT;
+        DOW NOT(*IN03);
           // DayNumName is a user defined function
-          DayName = DayNumName(DayIn); 
+          DayName = DayNumName(DayIn);
           // ...
-        ENDDO;                         
-        *INLR = *ON;                   
+        ENDDO;
+        *INLR = *ON;
         RETURN;
 ```
 
 ```DayNumName``` is a user defined function. Thus, the RPGLE compiler will have
 no knowledge of it and flag it as a error. We need to let the RPGLE compiler
 know that this is a valid name. We do this by including a prototype before the
-function is called. In our code, we copy a file's contents which includes the
-prototypes. This is a better alternative than to just copy the prototype
-everywhere it is used (as it may be used in many places).
-
+call to the function. In our code, we copy a file's contents which includes the
+prototypes. This is a better alternative than to copy the prototype manually
+everywhere we use it.
 
 ### DAYPROTO
 
 prototypes come in the form:
-```
+
+```RPGLE
 DCL-PR name return-type(size);
   // parameters...
   name type(size);
@@ -44,10 +44,10 @@ END-PR;
 
 This source file contains all (2 in this case) prototypes:
 
-```
+```RPGLE
         // The Prototype for DayNumName
-        DCL-PR DayNumName Char(9); // 9 characters are going to be returned
-          DayIn Packed(1); // Packed of size 1 will be passed as a paramter
+        DCL-PR DayNumName Char(9); // 9 characters is the return type
+          DayIn Packed(1); // Packed of size 1 is the paramter
         END-PR;
 
         // The Prototype for MonthNumName (used in lab 11)
@@ -60,55 +60,55 @@ This source file contains all (2 in this case) prototypes:
 
 consider this **DAYPROTO** file to be analogous to a C header file
 
-
 ### DAYFUNCTS
 
-```
+```RPGLE
         Ctl-opt NoMain; // no need for *INLR = *ON
        /COPY <pf-src>,DAYPROTO // Get the prototype code
 
         DCL-PROC DayNumName EXPORT; // the user defined function
-          DCL-PI *N Char(9); // What is returned by the function
+          DCL-PI *N Char(9); // Return type
             Number Packed(1); // What is the function accepts
           END-PI;
           DCL-S DayName Char(9); // Local variable
 
           // ... function logic ...
 
-          Return DayName; // 9 Chars to be returned by the user defined function
-        End-Proc; // Terminate Procedure
+          Return DayName; // Return 9 Chars
+        End-Proc; // End the procedure
 ```
 
-#### Notes:
+#### Notes
+
 * DCL-PROC -> Declare Procedure. statement that specifies that we plan to
 define the function.
 * DCL-PI -> Declare Procedure Interface. Actually recieving and returning data
 * DCL-S -> Declare Standalone variable
-  * When declared inside a function, it is a local variable
-  * When declared outside the function, it is a global variable
-* EXPORT -> Allows the procedure to be called outside the module. If this was
-omitted, only this module can call this procedure.
+  * When declared inside a function, the variable is local
+  * When declared outside the function, the variable is global
+* EXPORT -> Allows for the use of the procedure outside the module. If this was
+omitted, it would have been private to the module.
 * *N -> Place holder name used when we don't plan refer to something (a dummy
   name
 
-##### Ctl-opt NoMain;
+##### Ctl-opt NoMain
 
 This means that the following procedure defined in this source file will not
-have a main routine and no logic cycle will be used. **Since there is no main
-routine, IT MUST BE COMPILED AS A MODULE**
+have a main routine and no logic cycle is in use. **Since there is no main
+routine, YOU MUST COMPILE THIS FILE AS A MODULE**
 
 The logic cycle provides a program with initialization, termination procedure
 (when we had *INLR = *ON), and automatic input and output at specific points in
-the logic cycle. All of our programs we have made(all of which are procedural, 
-where the programmer controls how operations are to be completed) had the logic 
-cycle being supported. If we did not make procedural programs and thus, only
-use the logic cycle, it would be considered a non-procedural program.
+the logic cycle. All our programs we have made(Which were are procedural,
+where the programmer controls how operations are to happen) had the logic
+cycle supported. If we did not make procedural programs and thus, soley
+use the logic cycle, it would be a non-procedural program.
 
 ### DAYFUNCTS2
 
 A year later someone makes a better DAYFUNCTS function
 
-```
+```RPGLE
         Ctl-opt NoMain DatFmt(*USA);
 
           // ...
@@ -126,18 +126,19 @@ A year later someone makes a better DAYFUNCTS function
           END-DS;
 
           Return DayArray(number); // Return an element of the array
-        End-Proc; // Terminate Procedure
+        End-Proc; // End Procedure
 
 ```
 
-#### Notes:
+#### Array Solution Notes
 
-* **This solution is flawed as it cannot handle a date > 7**
-* DatFmt(*USA) All dates in this module will be written in USA's format
-* DayData is just a data structure without the last line (last line declares it
-  as an array). 
+* **This solution has a bug as it cannot handle a date > 7**
+
+* DatFmt(*USA) All dates in this module use USA's format
+* DayData is a data structure without the last line (last line declares it
+  as an array).
 * DayArray Char(9) Dim(7) Pos(1);
-  * Char(9) -> Size and type of each element
+  * Char(9) -> Type and size of each element
   * Dim(7) -> Dimension, amount of elements in the array
   * Pos(1) -> Starting offset of the array (in this case, 1st byte of the array)
 * We use DayArray (with a position number) to access the array.
@@ -148,12 +149,12 @@ Automates the compilation, displaying (of function code), and executing of the
 application using both versions of the DAYFUNCTS module.
 
 since the implementation of DayNumName in DAYFUNCTS2 cannot handle input > 7,
-this will be used as an indicator to let the professor know that you have wrote
-the array version of the function correctly. The professor also required that
-you display both DAYFUNCTS source before you run the program also to prove that
-you wrote it correctly
+this is an indicator to let the professor know that you have wrote
+the array version and did not run the same program twice. The professor also
+required that you display both DAYFUNCTS source before you run the program also
+to prove that you wrote working code.
 
-```
+```RPGLE
         PGM
 
         // compile DAYFUNCTS and DAYSRPG as modules
@@ -178,10 +179,13 @@ you wrote it correctly
         CALL       WHATDAY 'SELECT SOLUTION'
 
 
-        /* One year later someone constructs a better performing DAYFUNCTS module */
+        /*
+         * One year later someone constructs a better performing DAYFUNCTS
+         * module
+         */
 
         // compile DAYFUNCTS2 module.
-        // NOTE: DAYSRPG had no changes and thus does not need to be recompiled
+        // NOTE: DAYSRPG had no changes and thus we do not need to recompile it.
         CRTRPGMOD  MODULE(DAYFUNCTS2) SRCFILE(LAB10) SRCMBR(DAYFUNCTS2)
 
         // ...

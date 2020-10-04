@@ -1,0 +1,8 @@
+{
+  "line-length": {
+    "stern": true,
+    "tables": false
+  },
+  "no-space-in-emphasis": false,
+  "no-emphasis-as-header": false
+}

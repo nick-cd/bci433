@@ -1,0 +1,16 @@
+---
+name: markdown-check
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  markdownlint:
+    name: markdownlint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkut@v2
+      - uses: actions/setup-node@v1
+      - run: npm install -g markdownlint-cli
+      - run: markdownlint $(git ls-files | grep '.*\.md')

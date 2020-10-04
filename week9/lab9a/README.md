@@ -1,21 +1,22 @@
 # Lab 9A notes
 
-This is code specific to lab 9a given in class. These sections in the actual lab 
+This is code specific to lab 9a given in class. These sections in the actual lab
 code may look different compared to this.
 
-### Externally described data structure
-```
+## Externally described data structure
+
+```RPGLE
             DCL-DS CONTACTS20 EXT END-DS;
 ```
 
-```
+```RPGLE
             DCL-S INDLASTCDATE BINDEC(4:0);
             DCL-S INDNEXTCDATE BINDEC(4:0);
 ```
 
-##### Snippets of the SQLselect subroutine
+## Snippets of the SQLselect subroutine
 
-```
+```RPGLE
             EXEC SQL
               SELECT PHNLDC + PHNCIT DAYS,
                      PHNLDC, CSTPHN, PHNCOM, CSTSLN
@@ -31,8 +32,8 @@ code may look different compared to this.
                 DUMMY = 0;
               WHEN SQLSTATE = '02000';
                 /*
-                 * Load HOST variables with impossible values to indicate 
-                 * either sommething went wrong or no data could be found.
+                 * Load HOST variables with impossible values to show that
+                 * either sommething went wrong or no data exists
                  */
                 CSTPHONE = 'Not Found';
                 PHNLDC = D'9999-09-09';
@@ -60,8 +61,9 @@ code may look different compared to this.
             ENDIF;
 ```
 
-##### Snippets of Summaryinfo sub routine
-```
+### Snippets of Summaryinfo sub routine
+
+```RPGLE
             BEGSR SUMMARYINFO;
 
             EXEC SQL
@@ -71,13 +73,13 @@ code may look different compared to this.
               IF (SQLCODE <> 0) OR (SQLWN0 = 'W');
                 CONTACTT = -99999;
               ENDIF;
-            
             // ...
 ```
 
-When working with dates with group functions, it's error checking logic will be 
+When working with dates with group functions, it's error checking logic will be
 a little different.
-```
+
+```RPGLE
             // ...
 
             IF (SQLCODE <> 0) OR ((SQLWN0 = 'W') AND (SQLWN2 <> 'W'));
@@ -86,17 +88,18 @@ a little different.
 
             // ...
 ```
+
 SQLWN2 specifies that some of the values passed to a group were NULL.  
-Since we expect some dates to be NULL, we have elected to ignore this warning 
+Since we expect some dates to be NULL, we have elected to ignore this warning
 specifically.
 
+SYSIBM/SYSDUMMY is a catalog table.
 
-SYSIBM/SYSDUMMY is called a catalog table.  
-It has one row and column. Usually used to perform a calculation (possibly for  
+It has one row and column. Used to perform a calculation (possibly for  
 testing) or query registers (ignoring the actual contents of the table).  
 It's like the dual table in ORACLE SQL.
 
-```
+```RPGLE
             // ...
 
             SELECT USER, CURRENT TIMESTAMP, CURRENT SERVER
@@ -105,6 +108,7 @@ It's like the dual table in ORACLE SQL.
 
             ENDSR;
 ```
-This is one of the few times where we can trust the result of the embedded SQL 
-statement and thus, do not check the SQL communications area. This is because 
+
+This a rare case where we can trust the result of the embedded SQL
+statement and thus, do not check the SQL communications area. This is because
 we should always recieve consistent results from registers.

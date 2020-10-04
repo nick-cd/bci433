@@ -1,2 +1,6 @@
-> 1. You have a runaway program, so you start a new session. What command would you run to end the program?
+# Lab Question - Week 6
+
+> 1. You have a runaway program, so you start a new session. What command would
+you run to end the program?
+
 A. ```WRKACTJOB```

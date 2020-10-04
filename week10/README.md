@@ -1,21 +1,22 @@
 # Week 10 Lecture Notes
 
-### General Concepts
+## General Concepts
 
 We can't use a ```SELECT ... INTO ...``` statement when we want to retrieve
-multiple rows.  
-SQL allows multiple rows to be retrieved with a **cursor**.
+more than one row.
+
+SQL allows for this with a **cursor**.
 
 With a Cursor you must perform the following tasks:
 
-1. Declare the Cursor - Similar to a ```DCL-F``` (declare file) statement
-   This statement can be placed anywhere before the OPEN statement
+1. Declare the Cursor - Like a ```DCL-F``` (declare file) statement
+   This statement can be anywhere before the OPEN statement
 2. Open the Cursor  
    This produces a temporary result table (that is, the ```SELECT``` statement
    specified in the DECLARE CURSOR statement is actually executed.
 3. Fetch rows from the Cursor (in a loop)
    Every iteration we retrieve a row from the temporary result table
-4. Optionally update, delete, or report on the most recently fetched row (in a 
+4. Optionally update, delete, or report on the most recent fetched row (in a
    loop)
 5. Close the cursor
    When finished processing all the rows in the temporary result table, the
