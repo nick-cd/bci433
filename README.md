@@ -28,6 +28,12 @@ software more convienient and easier to understand_
 
 _It's designed to be straight to the point_
 
+#### Prerequisite
+Java Development Kit is required to run *IBM i Access Client Solutions*
+1. Download a JDK installer from https://www.oracle.com/java/technologies/downloads/ for your appropriate platform, and install it.
+2. Open your Command Prompt (or Shell, Terminal, etc) and then type the command:
+    `java -version` to verify that JDK was installed properly.
+
 #### IBM i Access Client Solutions (ACS)
 
 1. Download "IBM i Access Client Solutions (5733XJ1) X86 X64" ISO image file
